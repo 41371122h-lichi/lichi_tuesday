@@ -1,0 +1,456 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>個人網頁_樂琦</title>
+    <style>
+        /* 全域樣式 */
+        body {
+            margin: 0;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: #f5f7fa;
+            display:flex;
+        }
+
+        .bottom-text {
+            position: fixed;
+            bottom: 0;
+            left: 220px;                /* 從 sidebar 後開始 */
+            width: calc(100% - 220px);  /* 減掉 sidebar 寬度 */
+            text-align: center;
+            padding: 10px 0;
+            background-color: #1f2937;  /* 深色背景 */
+            color: #d1d5db;             /* 淺灰字體 */
+            font-size: 14px;
+        }
+
+        /* 側邊欄 */
+        .sidebar {
+            width: 220px;
+            background-color: #1f2937;
+            color: white;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            padding: 30px 10px;
+            height: 100vh;
+            position: fixed;
+        }
+
+        .sidebar img {
+            width: 120px;
+            height: 120px;
+            border-radius: 50%;
+            object-fit: cover;
+            border: 3px solid #fff;
+            margin-bottom: 20px;
+        }
+
+        .sidebar h1 {
+            margin: 0;
+            font-size: 1.8em;
+            text-align: center;
+        }
+
+        .sidebar h2 {
+            margin: 8px 0 0 0;
+            font-size: 1.0em;
+            text-align: center;
+        }
+
+        .sidebar .socials {
+            margin-top: 370px;
+            display: flex;
+        }
+
+        .sidebar .socials a {
+            color: #fff;
+            text-decoration: none;
+            font-weight: bold;
+        }
+
+        /* 主要內容 */
+        .main {
+            margin-left: 220px;
+            padding: 30px;
+            width: calc(100% - 220px);
+        }
+
+        .nav-buttons {
+            display: flex;
+            gap: 15px;
+            margin-bottom: 30px;
+        }
+
+        .nav-buttons button {
+            padding: 10px 20px;
+            border: 2px solid #1f2937; /* 主題藍色邊框 */
+            background-color: transparent; /* 透明背景 */
+            color: #1f2937; /* 主題藍文字 */
+            border-radius: 6px;
+            cursor: pointer;
+            transition: 0.3s;
+            font-weight: bold
+        }
+
+        section {
+            display: none;
+            background-color: #fff;
+            padding: 20px;
+            border-radius: 12px;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.05);
+
+            width: 100%;          /* 撐滿主內容 */
+            box-sizing: border-box; /* 確保 padding 不會超出 */
+            margin: 0;
+            text-align: left;
+        }
+
+
+        section.active {
+            display: block;
+        }
+
+        h3 {
+            border-bottom: 2px solid #1f2937;
+            padding-bottom: 10px;
+            margin-bottom: 20px;
+            font-size: 1.8em;
+            color: #1f2937;
+        }
+
+        ul a {
+            color: #4b5563; /* 將連結顏色改為深色，與你的主題色相符 */
+            text-decoration: none; /* 如果你不想要底線，可以加上這行 */
+        }
+
+        .concert-text {
+            font-size: 1.0em; /* 設定字體大小 */
+            color: #4b5563; /* 設定字體顏色，可以比標題顏色淺一些 */
+            margin-top: 6px; /* 在照片下方留點空間 */
+        }
+
+        ul {
+            font-size: 1.1em;
+            display: flex; /* 啟用 Flexbox 佈局 */
+            flex-direction: column; /* 將項目垂直排列 */
+            gap: 9px; /* 設置項目之間的垂直間距 */
+        }
+
+        .image-container {
+            width: 450px; /* 設定容器寬度 */
+            height: 350px; /* 設定容器高度 */
+            overflow: hidden; /* 超出容器的部分會被隱藏 */
+            border-radius: 5px; /* 設定圓角半徑 */
+        }
+
+        .image-container img {
+            width: 100%; /* 圖片寬度填滿容器 */
+            height: 100%; /* 圖片高度填滿容器 */
+            object-fit: cover; /* 保持圖片比例並裁剪以填滿容器 */
+        }
+
+        /* 讓容器成為 Flexbox */
+        .photo-gallery {
+            display: flex;
+            gap: 10px; /* 設定照片之間的間距 */
+            margin-top: 15px; /* 與上方文字的間距 */
+            flex-wrap: wrap; /* 如果照片太多，會自動換行 */
+            justify-content: flex-start; /* 讓照片從左邊開始排列 */
+        }
+
+        /* 調整照片單一項目的樣式 */
+        .photo-item {
+            flex: 1; /* 讓每個項目平均分配空間 */
+            min-width: 250px; /* 設定最小寬度，避免照片縮得太小 */
+            text-align: center; /* 讓說明文字置中 */
+        }
+
+        /* 確保圖片填滿容器並保持圓角 */
+        .photo-item img {
+            width: 100%;
+            height: 350px;
+            border-radius: 8px; /* 這裡設定圓角 */
+            object-fit: cover;
+        }
+
+        /* 技能欄 */
+        .skill-header {
+            display: flex;
+            justify-content: space-between; /* 左右分散 */
+            margin-bottom: 8px;             /* 和進度條留一點空隙 */
+        }
+
+        .skill-name {
+            font-weight: bold;
+        }
+
+        .skill-value {
+            font-weight: bold;
+            color: #4b5563;  /* 稍微灰一點，不會太搶眼 */
+        }
+
+        .skill-bar {
+            background-color: #e5e7eb;
+            border-radius: 10px;
+            overflow: hidden;
+            height: 30px;
+        }
+
+        .skill-bar-fill {
+            height: 100%;
+            background-color: #1f2937;
+            width: 0%;
+            border-radius: 10px;
+            transition: width 1s ease-in-out;
+        }
+    </style>
+</head>
+<body>
+
+    <!-- 側邊欄 -->
+    <div class="sidebar">
+        <img src="images/IMG_5884.jpg" alt="樂琦大頭照">
+        <h1>施樂琦</h1>
+        <h2>Lechi.S</h2>
+
+        <p>
+        I'm a <span class="typed"></span>
+        </p>
+
+        <script src="https://unpkg.com/typed.js@2.1.0/dist/typed.umd.js"></script>
+        <script>
+        var typed = new Typed('.typed', {
+            strings: ["Student.", "PM Dreamer.", "Musician.", "Traveler.", "Webtoon Lover."],
+            typeSpeed: 70,
+            backSpeed: 70,
+            loop: true,
+            backDelay: 5000 
+        });
+        </script>
+
+        <div class="socials">
+        <a href="https://www.instagram.com/li_chi.21/" target="_blank">Instagram</a> &nbsp;|&nbsp; <a href="https://www.dcard.tw/@lichi21" target="_blank">Dcard</a>
+        </div>
+
+        <div class="bottom-text">
+            © <span id="year">copyright by Lechi.S</span>
+        </div>
+    </div>
+
+    <!-- 主要內容 -->
+    <div class="main">
+        <div class="nav-buttons">
+            <button onclick="showSection('resume')">簡介</button>
+            <button onclick="showSection('skills')">技能</button>
+            <button onclick="showSection('concert')">音樂會紀錄</button>
+            <button onclick="showSection('travel')">旅行紀錄</button>
+            <button onclick="showSection('webtoon')">漫畫推薦</button>
+        </div>
+
+        <!-- 簡歷 -->
+        <section id="resume" class="active">
+            <h3>RESUME | 簡介</h3>
+            <ul>
+                <li>Education: Technology application and Human resource Dep. & Business Administration Dep. NTNU</li>
+                <li>Language: CHN | ENG | KOR</li>
+                <li>A Content PM Learner</li>
+                <li>A Coding Learner</li>
+            </ul>
+        </section>
+
+        <!-- 技能 -->
+        <section id="skills">
+            <h3>SKILL | 技能</h3>
+
+            <div class="skill">
+                <div class="skill-header">
+                    <span class="skill-name">English</span>
+                    <span class="skill-value">80%</span>
+                </div>
+                <div class="skill-bar">
+                    <div class="skill-bar-fill" style="width: 80%;"></div>
+                </div>
+            </div>
+
+            <div class="skill">
+                <div class="skill-header">
+                    <span class="skill-name">Korean</span>
+                    <span class="skill-value">70%</span>
+                </div>
+                <div class="skill-bar">
+                    <div class="skill-bar-fill" style="width: 70%;"></div>
+                </div>
+            </div>
+
+            <div class="skill">
+                <div class="skill-header">
+                    <span class="skill-name">Flute</span>
+                    <span class="skill-value">85%</span>
+                </div>
+                <div class="skill-bar">
+                    <div class="skill-bar-fill" style="width: 85%;"></div>
+                </div>
+            </div>
+
+            <div class="skill">
+                <div class="skill-header">
+                    <span class="skill-name">Business-related</span>
+                    <span class="skill-value">70%</span>
+                </div>
+                <div class="skill-bar">
+                    <div class="skill-bar-fill" style="width: 70%;"></div>
+                </div>
+            </div>
+        </section>
+
+        <!-- 音樂會紀錄 -->
+        <section id="concert">
+            <h3>CONCERT | 音樂會紀錄</h3>
+            <ul>
+                <li>2025-07-16 | 回響二十 · 樂聲不息</li>
+                <div class="image-container">
+                    <img src="images/2O5A3675.JPEG" alt="0716音樂會照">
+                </div>
+                <p class="concert-text">這次很榮幸可以進到臺中國家歌劇院大劇院進行表演❤</p>
+                <p class="concert-text">下面是本次演出的四首曲目，大家可以點擊聆聽</p>
+                <a href="https://youtu.be/FUvJJQ78s8U?si=d3J7-qSuSVC9VY5y&t=150" target="_blank">‧ Welcome to the Imagination world</a>
+                <a href="https://youtu.be/PV-SuClYtxg?si=MHml0iAmS5pvac0o" target="_blank">‧ Rhapsody for Alto Saxophone</a>
+                <a href="https://youtu.be/wECkfGFg3CA?si=ulF-EZchJNcTDGd9&t=165" target="_blank">‧ Sinfonietta No.3 "Distance of Sounds"</a>
+                <a href="https://youtu.be/Jd2RVlWTkJw?si=WgpVmZHcZwF9GlLs&t=30" target="_blank">‧ With Heart and Voice</a>
+            </ul>
+            
+
+            <ul>
+                <li>2025-07-26 | 樂 · 遇</li>
+                <div class="image-container">
+                    <img src="images/DSC02770.JPEG" alt="0726音樂會照">
+                </div>
+                <p class="concert-text">被高中學弟妹們邀請回去演出，順便和以前的朋友們聚一聚！</p>
+            </ul>
+
+            <ul>
+                <li>2025-08-24 | 音峋</li>
+                <div class="image-container">
+                    <img src="images/DSC14596.JPEG" alt="0824音樂會照">
+                </div>
+                <p class="concert-text">和高中校友團一起演出，還吹了【給莫道克的最後一封信】的Solo!</p>
+                <a href="https://youtu.be/MPk9i2lkxIA?si=Dw2CsX33exDUWvOh&t=285" target="_blank">‧ マードックからの最後の手紙</a>
+            </ul>
+        </section>
+
+        <!-- 旅行紀錄 -->
+        <section id="travel">
+            <h3>TRAVEL | 旅行紀錄</h3>
+            <ul>
+                <li>2025/01 Bankok & Pattaya</li>
+                <div class="image-container">
+                    <img src="images/IMG_1765.jpg" alt="真理寺">
+                </div>
+                <p class="concert-text">推薦大家要來泰國、、、這次去了十天含機酒只花兩萬元，超級划算！</p>
+                <p class="concert-text">Bangkok</p>
+                <div class="photo-gallery">
+                    <div class="photo-item">
+                        <img src="images/IMG_1684.jpg" alt="食物照">
+                        <p class="concert-text">鱷魚肉超級好吃༼☯﹏☯༽</p>
+                    </div>
+                    <div class="photo-item">
+                        <img src="images/IMG_1733.jpg" alt="食物照2">
+                        <p class="concert-text">來泰國必吃蟲蟲ψ(｀∇´)ψ</p>
+                    </div>
+                    <div class="photo-item">
+                        <img src="images/IMG_2023.jpg" alt="食物照3">
+                        <p class="concert-text">猜猜這個在百貨公司裡賣的麵多少錢？</p>
+                    </div>
+                </div>
+                <p class="concert-text">Pattaya</p>
+                <div class="photo-gallery">
+                    <div class="photo-item">
+                        <img src="images/IMG_1831.jpg" alt="食物照4">
+                        <p class="concert-text">在海邊看著夕陽吃飯完全是幸福</p>
+                    </div>
+                    <div class="photo-item">
+                        <img src="images/IMG_1985.jpg" alt="景物照1">
+                        <p class="concert-text">個人覺得還行，下次看更刺激的</p>
+                    </div>
+                    <div class="photo-item">
+                        <img src="images/IMG_2007.jpg" alt="食物照5">
+                        <p class="concert-text">在海邊喝咖啡也是很Chill了</p>
+                    </div>
+            </ul>
+
+            <ul>
+                <li>2025/02 Seoul</li>
+                <div class="image-container">
+                    <img src="images/IMG_4533.jpg" alt="KBS Arena">
+                </div>
+                <p class="concert-text">追星女獨自前往韓國的紀錄！</p>
+                <div class="image-container">
+                    <img src="images/IMG_4606.jpg" alt="UTY">
+                </div>
+                <p class="concert-text">媽呀好近！！完全是幸福的...❤❤❤</p>
+                <div class="photo-gallery">
+                    <div class="photo-item">
+                        <img src="images/IMG_4515.jpg" alt="食物照6">
+                        <p class="concert-text">沒有人可以拒絕薄巧</p>
+                    </div>
+                    <div class="photo-item">
+                        <img src="images/IMG_4363.jpg" alt="朋友照1">
+                        <p class="concert-text">和韓國朋友一起拍貼❤</p>
+                    </div>
+                    <div class="photo-item">
+                        <img src="images/IMG_0167.jpg" alt="朋友照2">
+                        <p class="concert-text">漢江公園野餐也是心願之一❤</p>
+                    </div>
+                    <div class="photo-item">
+                        <img src="images/IMG_4735.jpg" alt="朋友照3">
+                        <p class="concert-text">一起去K-beauty Festival❤</p>
+                    </div>
+                </div>
+            </ul>
+        </section>
+
+        <!-- 漫畫推薦 -->
+        <section id="webtoon">
+            <h3>WEBTOON | 漫畫推薦</h3>
+            <p class="concert-text">近期推薦作品❤</p>
+            <ul>
+                <li>愛上帝國第一惡女！</li>
+                <div class="image-container">
+                    <img src="images/愛上帝國第一惡女.jpeg" alt="愛上帝國第一惡女">
+                </div>
+            </ul>
+        </section>
+    </div>
+
+    <script>
+        function showSection(id) {
+    const sections = document.querySelectorAll('section');
+    sections.forEach(sec => sec.classList.remove('active'));
+    document.getElementById(id).classList.add('active');
+
+    // 更新按鈕樣式
+    const buttons = document.querySelectorAll('.nav-buttons button');
+    buttons.forEach(btn => btn.classList.remove('active'));
+    buttons.forEach(btn => {
+        if(btn.getAttribute('onclick').includes(id)) {
+            btn.classList.add('active');
+        }
+    });
+
+    // 技能動畫
+    if(id === 'skills'){
+        const fills = document.querySelectorAll('.skill-bar-fill');
+        fills.forEach(fill => {
+            const width = fill.style.width;
+            fill.style.width = '0%';
+            setTimeout(() => fill.style.width = width, 100);
+        });
+        }   
+    }
+
+    </script>
+
+</body>
+</html>
