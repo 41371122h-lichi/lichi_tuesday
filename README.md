@@ -8,6 +8,6 @@
 
 · [HW2 React修改後程式](https://github.com/41371122h-lichi/lichi_tuesday/blob/main/AItest.tsx)
 
-· [HW3_Youtube影片連結](#)
+· [HW3_Youtube影片連結](https://youtu.be/rNpZxAc1pjs)
 
 · [HW3_個人網頁結合API](https://github.com/41371122h-lichi/tuesday_web2/tree/main/web_2)
