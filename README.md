@@ -3,10 +3,17 @@
 
 網際網路概論 蔡芸琤 教授
 
+<details>
+  <summary>作業一相關</summary>
+  
+
 · [HW1 個人網頁製作](https://41371122h-lichi.github.io/lichi_tuesday/index.html)
+
+</details>
 
 <details>
   <summary>作業二相關</summary>
+
 
 · [HW2 Youtube影片連結](https://youtu.be/OOdZhNq-Kck)
 
@@ -25,8 +32,10 @@
 <details>
   <summary>作業三相關</summary>
 
+
 · [HW3_Youtube影片連結](https://youtu.be/rNpZxAc1pjs)
 
 · [HW3_個人網頁結合API](https://github.com/41371122h-lichi/tuesday_web2)
 
+**此作業說明放在新的README.md中**
 </details>
