@@ -6,14 +6,12 @@
 <details>
   <summary>作業一相關</summary>
   
-
 · [HW1 個人網頁製作](https://41371122h-lichi.github.io/lichi_tuesday/index.html)
 
 </details>
 
 <details>
   <summary>作業二相關</summary>
-
 
 · [HW2 Youtube影片連結](https://youtu.be/OOdZhNq-Kck)
 
@@ -31,7 +29,6 @@
 
 <details>
   <summary>作業三相關</summary>
-
 
 · [HW3_Youtube影片連結](https://youtu.be/rNpZxAc1pjs)
 
