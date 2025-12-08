@@ -48,6 +48,25 @@
 <details>
   <summary>作業四相關</summary>
 
-· [HW4_Github](#)
+· [HW4_Github](https://github.com/41371122h-lichi/tuesday_vercel)
+
+</details>
+
+<details>
+  <summary>期末專題</summary>
+
+  專題名稱：MANI filter
+
+  組員姓名：施樂琦 41371122H、洪于涵 41371223H
+
+· [線上網站網址](https://41371122h-lichi.github.io/MANI-filter/MANIfilter)
+
+· [Youtube影片](https://www.youtube.com/watch?v=O4NI8JTTYKE)
+
+· [專題首頁程式碼](https://github.com/41371122h-lichi/MANI-filter)
+
+· [漫畫篩選器程式碼](https://github.com/41371122h-lichi/manhuafilter)
+
+· [動漫篩選器程式碼](https://github.com/yuhan222/anime-filter)
 
 </details>
