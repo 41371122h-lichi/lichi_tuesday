@@ -61,7 +61,7 @@
 
 · [線上網站網址](https://41371122h-lichi.github.io/MANI-filter/MANIfilter)
 
-· [Youtube影片](https://www.youtube.com/watch?v=O4NI8JTTYKE)
+· [Youtube影片](https://youtu.be/rHeXwhdD_3k)
 
 · [專題首頁程式碼](https://github.com/41371122h-lichi/MANI-filter)
 
